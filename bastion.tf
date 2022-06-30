@@ -4,6 +4,7 @@ resource "aws_instance" "bastion" {
   instance_type               = "t2.micro"
   vpc_security_group_ids      = [aws_security_group.bastion.id]
   associate_public_ip_address = true
+  iam_instance_profile = "${aws_iam_instance_profile.bastion_profile.name}"
   key_name                    = "gogreen"
   tags = {
     "Name" = "Bastion-EC2"
@@ -31,6 +32,13 @@ resource "aws_security_group" "bastion" {
     cidr_blocks = ["0.0.0.0/0"]
     from_port   = 22
     to_port     = 22
+    protocol    = "tcp"
+  }
+   ingress {
+    description = "Custom TCP"
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 8080
+    to_port     = 8080
     protocol    = "tcp"
   }
   egress {
