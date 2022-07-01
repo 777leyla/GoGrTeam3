@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Git Init') {
             steps {
-                git credentialsId: 'your_token', url: 'your_repo_url'
+                git credentialsId: 'your_token', url: 'https://github.com/777leyla/GoGrTeam3.git'
             }
         }
         stage('Terraform Init') {
