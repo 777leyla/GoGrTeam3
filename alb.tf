@@ -1,4 +1,3 @@
-
 # Create Security Group for the Web Server
 # terraform aws create security group
 resource "aws_security_group" "webserver-security-group2" {
@@ -75,8 +74,6 @@ resource "aws_security_group" "elb_http" {
 }
 
 
-
-
 data "aws_ami" "amznlx2" {
   most_recent = true
   owners      = ["amazon"]
@@ -112,7 +109,7 @@ resource "aws_autoscaling_group" "ec2_scaling_rule1" {
   launch_configuration = aws_launch_configuration.ec2_launcher.name
   desired_capacity     = 2
   max_size             = 5
-  min_size             = 2
+  min_size             = 1
   lifecycle {
     create_before_destroy = true
   }
