@@ -10,7 +10,7 @@ resource "aws_vpc" "main" {
 resource "aws_subnet" "public_subnet1a" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.0.1.0/24"
-  availability_zone = "us-east-1a"
+  availability_zone = "us-west-1a"
   tags = {
     Name = "Public-Subnet1"
   }
@@ -19,7 +19,7 @@ resource "aws_subnet" "public_subnet1a" {
 resource "aws_subnet" "public_subnet2b" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.0.2.0/24"
-  availability_zone = "us-east-1b"
+  availability_zone = "us-west-1c"
   tags = {
     Name = "Public-Subnet2"
   }
@@ -29,7 +29,7 @@ resource "aws_subnet" "public_subnet2b" {
 resource "aws_subnet" "private_subnet1a" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.0.3.0/24"
-  availability_zone = "us-east-1a"
+  availability_zone = "us-west-1a"
   tags = {
     Name = "Private-Subnet1"
   }
@@ -38,7 +38,7 @@ resource "aws_subnet" "private_subnet1a" {
 resource "aws_subnet" "private_subnet2b" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.0.4.0/24"
-  availability_zone = "us-east-1b"
+  availability_zone = "us-west-1c"
   tags = {
     Name = "Private-Subnet2"
   }
@@ -47,7 +47,7 @@ resource "aws_subnet" "private_subnet2b" {
 resource "aws_subnet" "private_subnet3a" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.0.5.0/24"
-  availability_zone = "us-east-1a"
+  availability_zone = "us-west-1a"
   tags = {
     Name = "Private-Subnet3"
   }
@@ -56,7 +56,7 @@ resource "aws_subnet" "private_subnet3a" {
 resource "aws_subnet" "private_subnet4b" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.0.6.0/24"
-  availability_zone = "us-east-1b"
+  availability_zone = "us-west-1c"
   tags = {
     Name = "Private-Subnet4"
   }

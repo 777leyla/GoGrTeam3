@@ -1,112 +1,42 @@
-
-resource "aws_s3_bucket" "green7171" {
-  bucket = "green7171"
+#Creating S3bucket
+resource "aws_s3_bucket" "my-ggn-bucket" {
+  bucket = "my-green-bucket"
   acl    = "private"
-
   lifecycle_rule {
-    id      = "log"
+    id      = "my-greenn_quarterly_retention"
+    prefix  = "folder/"
     enabled = true
 
-    prefix = "log/"
-
-    tags = {
-      rule      = "log"
-      autoclean = "true"
-    }
-
-    transition {
-      days          = 90
-      storage_class = "STANDARD_IA" # or "ONEZONE_IA"
-    }
-
-    transition {
-      days          = 1800
-      storage_class = "GLACIER"
-    }
-
     expiration {
-      days = 1890
+      days = 90
     }
   }
-
-  lifecycle_rule {
-    id      = "tmp"
-    prefix  = "tmp/"
+  versioning {
     enabled = true
-
-    expiration {
-      date = "2027-01-12"
-    }
   }
 }
 
 
-# resource "aws_s3_bucket" "green7171" {
-#   bucket = "green7171"
-#   acl    = "private"
-# }
 
-# resource "aws_s3_bucket_lifecycle_configuration" "bucket-config" {
-#   bucket = aws_s3_bucket.green7171.id
-#   rule {
-#     id = "log"
-#     expiration {
-#       days = 90
-#     }
-#     filter {
-#       and {
-#         prefix = "log/"
-#         tags = {
-#           rule      = "log"
-#           autoclean = "true"
-#         }
-#       }
-#     }
-#     status = "Enabled"
-#     transition {
-#       days          = 30
-#       storage_class = "STANDARD_IA"
-#     }
-#     transition {
-#       days          = 60
-#       storage_class = "GLACIER"
-#     }
-#   }
-#   rule {
-#     id = "tmp"
-#     filter {
-#       prefix = "tmp/"
-#     }
-#     expiration {
-#       date = "2023-01-13T00:00:00Z"
-#     }
-#     status = "Enabled"
-#   }
-# }
+resource "aws_s3_bucket" "my-ggn-glacier" {
+  bucket = "my-green-glacier"
+  acl    = "private"
+  lifecycle_rule {
+    id      = "my-green-glacier-fiveyears_retention"
+    prefix  = "folder/"
+    enabled = true
 
-# resource "aws_s3_bucket_lifecycle_configuration" "versioning-bucket-config" {
-#   # Must have bucket versioning enabled first
-#   depends_on = [aws_s3_bucket_versioning.versioning]
-#   bucket = aws_s3_bucket.versioning_bucket.bucket
-#   rule {
-#     id = "config"
-#     filter {
-#       prefix = "config/"
-#     }
-#     noncurrent_version_expiration {
-#       noncurrent_days = 90
-#     }
-#     noncurrent_version_transition {
-#       noncurrent_days = 30
-#       storage_class   = "STANDARD_IA"
-#     }
-#     noncurrent_version_transition {
-#       noncurrent_days = 60
-#       storage_class   = "GLACIER"
-#     }
-#     status = "Enabled"
-#   }
-# }
+    expiration {
+      days = 1825
+    }
+
+    transition {
+      days          = 1
+      storage_class = "GLACIER"
+    }
+  }
+}
+
 
 
 

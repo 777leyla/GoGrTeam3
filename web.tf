@@ -29,7 +29,7 @@ resource "aws_autoscaling_group" "web-scaling-rule" {
   launch_configuration = aws_launch_configuration.ec2_launcher1.name
   desired_capacity     = 2
   max_size             = 6
-  min_size             = 2
+  min_size             = 1
   lifecycle {
     create_before_destroy = true
   }
@@ -113,4 +113,3 @@ resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_down" {
   alarm_description = "This metric monitor EC2 instance CPU utilization"
   alarm_actions     = [aws_autoscaling_policy.web_policy_down.arn]
 }
-
