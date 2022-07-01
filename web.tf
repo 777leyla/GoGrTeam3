@@ -3,7 +3,7 @@ resource "aws_lb" "web" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.elb_http.id]
-  subnets            = [aws_subnet.public_subnet1a.id, aws_subnet.public_subnet2b.id]
+  subnets            = [aws_subnet.public_subnet1a.id, aws_subnet.public_subnet2c.id]
   tags = {
     "Name" = "WEB"
   }
@@ -25,7 +25,7 @@ resource "aws_launch_configuration" "ec2_launcher1" {
 
 resource "aws_autoscaling_group" "web-scaling-rule" {
   name                 = "ec2-scaling1"
-  vpc_zone_identifier  = [aws_subnet.private_subnet3a.id, aws_subnet.private_subnet4b.id]
+  vpc_zone_identifier  = [aws_subnet.private_subnet3a.id, aws_subnet.private_subnet4c.id]
   launch_configuration = aws_launch_configuration.ec2_launcher1.name
   desired_capacity     = 2
   max_size             = 6
