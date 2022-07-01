@@ -140,7 +140,7 @@ resource "aws_lb" "app" {
   }
 }
 
-resource "aws_lb_target_group" "ec2_target_group1" {
+resource "aws_lb_target_group" "app_target_group1" {
   name     = "app-target-group1"
   port     = 80
   protocol = "HTTP"
@@ -153,13 +153,13 @@ resource "aws_lb_listener" "lb_listener1" {
   protocol          = "HTTP"
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.ec2_target_group1.arn
+    target_group_arn = aws_lb_target_group.app_target_group1.arn
   }
 }
 
 resource "aws_autoscaling_attachment" "alb_asg_attach1" {
   autoscaling_group_name = aws_autoscaling_group.ec2_scaling_rule1.id
-  alb_target_group_arn   = aws_lb_target_group.ec2_target_group1.arn
+  alb_target_group_arn   = aws_lb_target_group.app_target_group1.arn
 }
 
 resource "aws_autoscaling_policy" "app_policy_up" {
