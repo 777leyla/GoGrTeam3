@@ -15,7 +15,7 @@ resource "aws_db_instance" "project-1" {
 }
 resource "aws_db_subnet_group" "db-group1" {
   name       = "db-group1"
-  subnet_ids = [aws_subnet.private_subnet1a.id, aws_subnet.private_subnet2b.id]
+  subnet_ids = [aws_subnet.private_subnet1a.id, aws_subnet.private_subnet2c.id]
 
   tags = {
     Name = "My DB subnet group1"
@@ -39,7 +39,7 @@ resource "aws_db_instance" "project-2" {
 }
 resource "aws_db_subnet_group" "db-group2" {
   name       = "db-group2"
-  subnet_ids = [aws_subnet.private_subnet3a.id, aws_subnet.private_subnet4b.id]
+  subnet_ids = [aws_subnet.private_subnet3a.id, aws_subnet.private_subnet4c.id]
 
   tags = {
     Name = "My DB subnet group2"
