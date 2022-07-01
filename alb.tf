@@ -141,7 +141,7 @@ resource "aws_lb" "app" {
 }
 
 resource "aws_lb_target_group" "ec2_target_group1" {
-  name     = "web-target-group1"
+  name     = "app-target-group1"
   port     = 80
   protocol = "HTTP"
   vpc_id   = aws_vpc.main.id
