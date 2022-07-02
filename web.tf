@@ -29,7 +29,7 @@ resource "aws_autoscaling_group" "web-scaling-rule" {
   launch_configuration = aws_launch_configuration.ec2_launcher1.name
   desired_capacity     = 2
   max_size             = 6
-  min_size             = 1
+  min_size             = 2
   lifecycle {
     create_before_destroy = true
   }
